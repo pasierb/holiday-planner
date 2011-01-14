@@ -1,0 +1,18 @@
+<% content_for :title do %>
+  HolidayPlanner - <%= @post.title %>
+<% end %>
+
+<article class="page">
+  
+  <header class="page-title">
+    <hgroup>
+      <h3><%=l @post.created_at, :format => :long %></h3>
+      <h1><%=h @post.title %></h1>
+    </hgroup>
+  </header>
+
+  <section class="page-content">
+    <%=raw @post.content %>
+  </section>
+
+</article>

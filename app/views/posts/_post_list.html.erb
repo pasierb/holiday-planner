@@ -1,0 +1,4 @@
+<div class="post-list">
+  <span class="post-published"><%=l post.created_at, :format => :long %></span>
+  <span class="post-list-title"><%= link_to post.title, post_path( post.permalink ) %></span>
+</div>

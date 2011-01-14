@@ -1,0 +1,35 @@
+<div id="account-info">
+  
+  <div class="logged-info"> 
+    <% if current_user %>
+      <%=t ('portal.hi') %>, <%= link_to current_user.email, edit_user_registration_path %> | 
+      <%= link_to t('portal.not_you'), destroy_user_session_path %>
+    <% else %>
+      <%= link_to t('portal.login'), new_user_session_path %>
+      <%= link_to image_tag( '/images/fb.jpg', :title => "Sign in as User with Facebook" ), user_oauth_authorize_url(:facebook) %> | 
+      <%= link_to t('portal.register'), new_user_registration_path %>
+    <% end %>
+  </div>
+
+  <div class="internationalization-info">
+    <span id="localizations" class="int-menu-link">
+      <%= link_to_function t('portal.location')+": "+t('portal.localizations.full.'+session[:localization]), "toggleIntMenu('localizations')", :class => "link-underline" %>
+    </span> | 
+    <span id="locales" class="int-menu-link">
+      <%= link_to image_tag('/images/country_flags/pl.png', :title => "pl"), "#{request.url.split('?').first}?locale=pl" %>
+      <%= link_to image_tag('/images/country_flags/en.png', :title => "en"), "#{request.url.split('?').first}?locale=en" %>
+    </span> 
+  </div>
+
+  <div id="localizations-choose" class="int-menu" >
+    <ul>
+      <% PublicHoliday.locations.each do |location| %>
+        <li>
+        <%= link_to location[0], planner_path( location[1] ) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
+    

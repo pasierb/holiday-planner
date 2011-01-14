@@ -1,0 +1,17 @@
+<% content_for :title do %>
+  HolidayPlanner - <%= @page.title %>
+<% end %>
+
+<article class="page">
+  
+  <header class="page-title">
+    <hgroup>
+      <h1><%=h @page.title %></h1>
+    </hgroup>
+  </header>
+
+  <section class="page-content">
+    <%=raw @page.content %>
+  </section>
+
+</article>

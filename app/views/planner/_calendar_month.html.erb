@@ -1,0 +1,34 @@
+<% date = Date.civil(@year, month, 1) %>
+
+<tr class="day-of-week-names">
+  <td></td>
+
+  <% unless date.cwday == 1 %>
+    <% (1...(date.cwday)).to_a.reverse.each do |fill| %><td></td><% end %>
+  <% end %>
+
+  <% while date.month == month do %>
+    <%= content_tag :td, l(date, :format => "%a") %>
+    <% date = date + 1.day %>
+  <% end %>
+</tr>
+
+<% date = Date.civil(@year, month, 1) %>
+<tr class="month<%= month %>">
+    
+  <td class="month-name">
+    <%= content_tag :div, h(I18n.l date, :format => "%B"), :class => "month-name-label" %>
+  </td>
+
+  <% unless date.cwday == 1 %>
+    <% (1...(date.cwday)).to_a.reverse.each do |fill| %>
+      <%= content_tag :td, content_tag( :div, "", :class => ["fill", week_day_class(date-fill.day)].compact.join(' ') )%>
+    <% end %>
+  <% end %>
+            
+  <% while date.month == month do %>
+    <%= calendar_day_cell( date, public_holidays ) %>
+    <% date = date + 1.day %>
+  <% end %>
+              
+</tr>

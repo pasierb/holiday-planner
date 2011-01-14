@@ -1,0 +1,18 @@
+<% content_for :title do %>
+  HolidayPlanner - <%=t 'portal.menu.news' %>
+<% end %>
+
+
+<section class="page">
+  
+  <header class="page-title">
+    <hgroup>
+      <h1><%=t 'portal.menu.news' %></h1>
+    </hgroup>
+  </header>
+  
+  <section class="posts">
+    <%= render :partial => "post_list", :collection => @posts, :as => :post %>
+  </section>
+
+</section>

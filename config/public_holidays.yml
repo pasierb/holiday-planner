@@ -1,0 +1,14 @@
+pl:
+  klass: 'PublicHoliday::Poland'
+
+en:
+  klass: 'PublicHoliday::England'
+
+ir:
+  klass: 'PublicHoliday::Ireland'
+
+it:
+  klass: 'PublicHoliday::Italy'
+
+default:
+  klass: 'PublicHoliday::Poland'

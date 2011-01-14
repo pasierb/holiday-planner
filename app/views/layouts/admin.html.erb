@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HolidayPlanner: Admin</title>
+  <%= formtastic_stylesheet_link_tag %>
+  <%= javascript_include_tag 'jquery', '/admin/ckeditor/ckeditor.js', '/admin/ckeditor/config.js', '/admin/ckeditor/lang/pl.js', '/admin/ckeditor/plugins/styles/styles/default.js' %>  
+  <%= stylesheet_link_tag '/admin/ckeditor/skins/kama/editor' %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+  <%= yield %>
+  
+</body>
+</html>

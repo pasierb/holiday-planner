@@ -1,0 +1,371 @@
+html, body, table {
+  font-family: 'trebuchet ms', sans-serif;
+  font-size: 12px;
+}
+
+body {
+  background: url('/images/back.png') 0 0 no-repeat #eaeaea;
+  background-attachment: fixed;
+}
+
+div.wrp {
+  width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a img {
+  border: 0;
+}
+
+section.top-wrapper, section.content {
+  width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.tp_adsense {
+  margin: 3px 0 0 30px;
+}
+
+section.content {
+  background: url('/images/opacity80.png');
+  width: 1050px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+section.top-wrapper {
+  height: 90px;
+  position: relative;
+}
+
+header#top h1 a {
+  text-indent: -9999em;
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 30px;
+}
+
+header#top h2#year-holder {
+  display: block;
+  position: absolute;
+  left: 260px;
+  top: 35px;
+  font-size: 27px;
+}
+
+header#top h1 a {
+  background: transparent url('/images/logo.png') no-repeat 0px 0px;
+  width: 248px;
+  height: 45px;
+}
+
+section.top-menu {
+  position: absolute;
+  left: 450px;
+  top: 30px;
+}
+
+nav#menu {
+  height: 35px;
+}
+
+section.top-menu ul {
+  list-style: none;
+  display: block;
+}
+
+section.top-menu ul li {
+  float: left;
+  margin-right: 20px;
+}
+
+section.top-menu ul li a {
+  text-decoration: none;
+  display: block;
+  font-size: 15px;
+  padding: 10px;
+  color: #eee;
+  background-color: #333;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  border: 2px solid transparent;
+}
+
+section.top-menu ul li a:hover {
+  color: #fff;
+  background-color: #111;
+  border: 2px solid #fff;
+}
+
+table.calendar {
+  width: 100%;
+}
+
+table.calendar thead td {
+  font-weight: bold;
+}
+
+table.calendar tr.day-of-week-names td {
+  font-size: 7px;
+  padding-top: 5px;
+}
+
+table.calendar div.day {
+  border: 1px solid #c3c3c3;
+  background: url('/images/day_back.png') 0 0 no-repeat;
+  width: 22px;
+  height: 13px;
+  padding-top: 10px;
+  text-align: center;
+  font-size: 11px;
+}
+
+table.calendar div.saturday {
+  background-image: url('/images/day_sunday.png');
+}
+
+table.calendar div.sunday {
+  background-image: url('/images/day_sunday.png');
+}
+
+table.calendar td.month-name {
+  width: 80px;
+}
+
+div.month-name-label {
+  font-weight: bold;
+}
+
+table.calendar div.saturday, table.calendar div.sunday{
+  background-color: #777;
+}
+
+table.calendar div.holiday {
+  background-color: #bc2e2e;
+  background-image: url('/images/day_holiday.png');
+}
+
+table.calendar div.period {
+  background-color: yellow;
+}
+
+table.calendar div.leave {
+  background-image: url('/images/day_free.png');
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+table.calendar td div {
+  width: 25px;
+}
+
+div#account-info {
+  float: right;
+  background-color: #000;
+  color: #fff;
+  padding: 4px 8px 8px 8px;
+  font-size: 11px;
+}
+
+div#account-info a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+div#account-info a:hover {
+  color: #ccc;
+  text-decoration: underline;
+}
+
+div#account-info a.link-underline {
+  text-decoration: underline;
+  color: yellow;
+}
+
+div#account-info a.link-underline:hover {
+  text-decoration: none;
+}
+
+div.logged-info {
+  margin-bottom: 2px;
+}
+
+div.internationalization-info {
+  border-top: 1px solid #555;
+  padding-top: 2px;
+  text-align: right;
+}
+
+span#localizations {
+  position: relative;
+}
+
+span.current-int-menu {
+  background-color: #222;
+}
+
+span#locales, span#localizations {
+  padding: 2px;
+}
+
+div#localizations-choose, div#locales-choose {
+  display: none;
+  padding: 5px;
+  width: 100%;
+  background-color: #222;
+  float: right;
+}
+
+div#localizations-choose ul, div#locales-choose ul {
+  list-style: none;
+  text-align: right;
+}
+
+
+div#locales-choose ul li {
+  float: right;
+}
+
+div#localizations-choose ul li{
+  margin: 3px 3px 0 0;
+}
+
+div.info-bar {
+  width: 900px;
+  font-size: 12px;
+}
+
+span#save-info {
+  float: right;
+}
+
+footer {
+  width: 800px;
+  border-top: 1px solid #c3c3c3;
+  color: #444;
+  margin-top: 15px;
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+footer a {
+  color: #222
+}
+
+#wysuwany_div { 
+  width: 236px; 
+  height: 382px; 
+  background: url('/images/facebook_bg.jpg') no-repeat; 
+  position: fixed; 
+  top: 100px; 
+  right: -209px;
+} 
+
+#ramka_facebooka { 
+  margin: 7px 0 0 40px;
+}
+
+section.calendar-wrapper {
+}
+
+span.counts-wrapper {
+  font-size: 14px;
+}
+
+span.count {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+div.top_adsense {
+  width: 730px; 
+}
+
+// custom pages
+
+.page {}
+
+.page p {
+  margin-bottom: 10px;
+}
+
+header.page-title {}
+
+header.page-title h1 {
+  font-size: 2em;
+  color: #333;
+  margin: 0 0 20px 0;
+}
+
+header.page-title h3 {
+  float: right;
+}
+
+section.page-content {
+  padding: 10px;
+}
+
+div.post-list {
+  margin-bottom: 20px;
+}
+
+.post-published {
+  color: #444;
+  margin: 5px;
+  font-size: 0.9em;
+}
+
+.post-list-title {
+  margin: 0 0 0 50px;
+  font-size: 1.5em;
+}
+
+.post-list-title a {
+  color: #333;
+}
+
+.post-list-title a:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+.flash {
+  width: 1070px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;  
+  padding: 5px 0 5px 15px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fff;
+  font-family: Tahoma, Arial, Verdana, Sans-serif;
+}
+
+#flash-notice {
+  background: #42962f;
+}
+
+#flash-error {
+  background: #c95757;
+}
+
+.flash-hide-button {
+  float: right;
+  font-weight: bold;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.flash-hide-button a {
+  color: #fff;
+  text-decoration: none;
+}

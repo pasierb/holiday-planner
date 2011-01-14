@@ -1,0 +1,60 @@
+<% content_for :year_holder do %>
+  <%= link_to image_tag('/images/prev.gif'), planner_path( params[:localization], @year - 1 ) %>
+  <%=h @year %> 
+  <%= link_to image_tag('/images/next.gif'), planner_path( params[:localization], @year + 1 ) %>
+<% end %>
+
+<div class="info-bar">
+  <span class="counts-wrapper">
+    <%=t 'portal.you_have_planned' %> <span id="leave-count" class="count">0</span> 
+    <%=t 'portal.days_of_leave' %> - <%=t 'portal.got' %>
+    <span id="period-count" class="count">0</span> <%=t 'portal.days_of' %>!
+  </span>
+  <span id="save-info"></span>
+</div>
+
+<section class="calendar-wrapper">
+  <table class="calendar" cellspacing="0" cellpadding="0">
+    <tbody>
+      <% (1..12).each do |month| %>
+        <%= render :partial => "calendar_month", :locals => { :month => month, :public_holidays => @public_holidays } %>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<% javascript_tag do %>
+  
+  function saveDay(d) {
+    <% if current_user %> 
+      $.ajax({
+        type: "POST",
+        url: "/users/<%= current_user.id %>/days.js",
+        data: "day[date]="+d.attr('id')+"&day[user_id]=<%= current_user.id %>",
+        success: function(msg){ eval(msg); }
+      });
+    <% else %>
+      return true;
+    <% end %>
+  }
+  
+  function deleteDay(d) {
+    <% if current_user %> 
+      $.ajax({
+        type: "DELETE",
+        url: "/users/<%= current_user.id %>/days/"+d.attr('id')+".js",
+        success: function(msg){ eval(msg); }
+      });
+    <% else %>
+      return true;
+    <% end %>
+  }
+  
+  <% if current_user %>
+    <% current_user.days.each do |day| %>
+      markUpDay( $("#<%= day.date %>") );
+    <% end %>
+    updateLeaveCounter();
+  <% end %>
+  
+<% end %>
