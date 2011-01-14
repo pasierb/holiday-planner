@@ -37,6 +37,11 @@ pl:
     omniauth_callbacks:
       success: 'Pomyślnie zalogowano przez konto %{kind}.'
       failure: 'Nie mogliśmy zalogować Cię przez %{kind} z powodu: "%{reason}".'
+    oauth_callbacks:
+      user:
+        facebook:
+          success: "Pomyślnie zalogowano"
+          failure: "Logowanie zakończone niepowodzeniem"
     mailer:
       confirmation_instructions:
         subject: 'Jak potwierdzić konto'

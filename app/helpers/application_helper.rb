@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def flash_notice( options = {} )
     content_tag :div, { :class => "flash", :id => "flash-notice" }.merge( options ) do
-      flash[:notice] 
+      concat( flash[:notice] ).concat hide_button("flash-notice")
     end unless flash[:notice].blank?
   end
 
