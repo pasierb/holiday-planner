@@ -9,6 +9,3 @@ ir:
 
 it:
   klass: 'PublicHoliday::Italy'
-
-default:
-  klass: 'PublicHoliday::Poland'
