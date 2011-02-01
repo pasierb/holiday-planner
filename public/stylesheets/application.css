@@ -247,7 +247,7 @@ span#save-info {
 }
 
 footer {
-  width: 800px;
+  width: 900px;
   border-top: 1px solid #c3c3c3;
   color: #444;
   margin-top: 15px;
@@ -368,4 +368,13 @@ div.post-list {
 .flash-hide-button a {
   color: #fff;
   text-decoration: none;
+}
+
+a.sooftly-link {
+  display: block;
+  width: 197px;
+  height: 75px;
+  background-image: url('/images/sooftly-logo-small.png');
+  float: right;
+  text-indent: -9999em;
 }
