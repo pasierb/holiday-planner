@@ -12,6 +12,9 @@ protected
 
   def find_post
     @post = Post.find_by_permalink_and_locale( params[:permalink], I18n.locale )
+    unless @post
+      redirect_to posts_path
+    end
   end
 
 end

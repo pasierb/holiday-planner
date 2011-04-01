@@ -114,7 +114,7 @@ table.calendar tr.day-of-week-names td {
   padding-top: 5px;
 }
 
-table.calendar div.day {
+table.calendar a.day {
   border: 1px solid #c3c3c3;
   background: url('/images/day_back.png') 0 0 no-repeat;
   width: 22px;
@@ -122,13 +122,14 @@ table.calendar div.day {
   padding-top: 10px;
   text-align: center;
   font-size: 11px;
+  display: block;
 }
 
-table.calendar div.saturday {
+table.calendar a.saturday {
   background-image: url('/images/day_sunday.png');
 }
 
-table.calendar div.sunday {
+table.calendar a.sunday {
   background-image: url('/images/day_sunday.png');
 }
 
@@ -140,20 +141,20 @@ div.month-name-label {
   font-weight: bold;
 }
 
-table.calendar div.saturday, table.calendar div.sunday{
+table.calendar a.saturday, table.calendar a.sunday{
   background-color: #777;
 }
 
-table.calendar div.holiday {
+table.calendar a.holiday {
   background-color: #bc2e2e;
   background-image: url('/images/day_holiday.png');
 }
 
-table.calendar div.period {
+table.calendar a.period {
   background-color: yellow;
 }
 
-table.calendar div.leave {
+table.calendar a.leave {
   background-image: url('/images/day_free.png');
 }
 
@@ -161,7 +162,7 @@ table.calendar div.leave {
   cursor: pointer;
 }
 
-table.calendar td div {
+table.calendar td a {
   width: 25px;
 }
 
@@ -312,6 +313,16 @@ header.page-title h3 {
 
 section.page-content {
   padding: 10px;
+}
+
+article.error-page {
+  height: 300px;
+  background: url('/images/paper_ball.jpg') 0 0 no-repeat;
+  padding-left: 300px;
+}
+
+article.error-page header.page-title {
+  padding-top: 60px;
 }
 
 div.post-list {

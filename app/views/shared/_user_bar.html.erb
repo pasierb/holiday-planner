@@ -6,7 +6,7 @@
       <%= link_to t('portal.not_you'), destroy_user_session_path %>
     <% else %>
       <%= link_to t('portal.login'), new_user_session_path %>
-      <%= link_to image_tag( '/images/fb.jpg', :title => "Sign in as User with Facebook" ), user_oauth_authorize_url(:facebook) %> | 
+      <%= link_to image_tag( '/images/fb_connect.png', :title => "Sign in as User with Facebook" ), user_oauth_authorize_url(:facebook) %> | 
       <%= link_to t('portal.register'), new_user_registration_path %>
     <% end %>
   </div>

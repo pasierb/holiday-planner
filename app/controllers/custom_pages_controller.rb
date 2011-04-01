@@ -5,7 +5,6 @@ class CustomPagesController < ApplicationController
   before_filter :find_page
 
   def show
-     
   end
 
 protected

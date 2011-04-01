@@ -82,7 +82,7 @@ function markDay(d) {
 function nextDay(d) {
   try {
     if( d.hasClass('last-day-of-month') ) {
-      nxt = d.parent().parent().next().next().find("td div.day").first();
+      nxt = d.parent().parent().next().next().find("td a.day").first();
     } else { nxt = d.parent().next('td').children().first(); }
     return nxt;
   } catch(e) { return null; }
@@ -91,7 +91,7 @@ function nextDay(d) {
 function prevDay(d) {
   try {
     if( d.hasClass('first-day-of-month') ) {
-      nxt = d.parent().parent().prev().prev().find("td div.day").last();
+      nxt = d.parent().parent().prev().prev().find("td a.day").last();
     } else {
       nxt = d.parent().prev('td').children().first();
     }
