@@ -4,7 +4,10 @@ $(document).ready( function(){
   
   // register onClick hook
   //
-  $(".clickable").click( function(){ markDay( $(this) ) });
+  $(".clickable").click( function(){ 
+    markDay( $(this) ) 
+    return false;
+  });
 
 
   // creates bubble popup for holidays

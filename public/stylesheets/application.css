@@ -121,6 +121,8 @@ table.calendar a.day {
   height: 13px;
   padding-top: 10px;
   text-align: center;
+  text-decoration: none;
+  color: #000;
   font-size: 11px;
   display: block;
 }
