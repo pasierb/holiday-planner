@@ -1,5 +1,6 @@
 pl:
   portal:
+    list: 'lista'
     page_not_found: 'taka strona nie istnieje'
     login: 'Zalguj'
     register: 'Załóż konto'

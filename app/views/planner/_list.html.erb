@@ -1,0 +1,22 @@
+<% public_holidays.sort_by{|d| d.date }.group_by{|d| d.date.month }.each do |month, holidays_by_month| %>
+
+  <div class="holidays-list-month-container">
+    <table>
+      <tr>
+        <td class="holidays-list-month">
+          <div class="holidays-list-month-name"><%=l holidays_by_month.first.date, :format => "%m" %></div>
+        </td>
+        <td>
+            <ul class="holidays-list">
+              <% holidays_by_month.each do |day| %>
+                <li>
+                  <span class="holidays-list-date"><%=l day.date %></span> <%=t day.code %>
+                </li>
+              <% end %>
+            </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+<% end %>

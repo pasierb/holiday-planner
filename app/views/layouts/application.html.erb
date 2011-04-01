@@ -67,9 +67,6 @@
     </header>
   </section>
 
-  <%= flash_notice %> 
-  <%=raw flash_error %> 
-    
   <div class="tp_adsense">
     <script type="text/javascript"><!--
       google_ad_client = "ca-pub-8246502758908109";
@@ -81,6 +78,9 @@
     </script>
     <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
   </div>
+  
+  <%= flash_notice %> 
+  <%=raw flash_error %> 
 
   <section class="content">
     <%= yield %>

@@ -9,14 +9,14 @@ en:
   may_day: "May Day Bank Holiday"
   spring: "Spring Bank Holiday"
   late_summer: "Late Summer Bank Holiday"
-  three_kings: 'Święto trzech króli'
-  pentecost: 'Zielone Świątki'
-  corpus_christi: 'Boże Ciało'
-  first_of_may: 'Święto Państwowe' 
-  third_of_may: 'Święto Narodowe Trzeciego Maja'
-  maria: 'Wniebowzięcie Najświętszej Maryi Panny'
-  all_saints: 'Wszytskich Świętych'
-  independent: 'Narodowe Święto Niepodleglości'
+  three_kings: 'Epiphany'
+  pentecost: 'Pentecost'
+  corpus_christi: 'Corpus Christi'
+  first_of_may: 'State Holiday' 
+  third_of_may: 'Third of May National Day'
+  maria: 'Assumption of the Blessed Virgin Mary'
+  all_saints: 'All Saints'
+  independent: 'National Independence Day'
 
   st_patrick_day: "St. Patrick's Day"
   orangemans_holiday: "Orangeman's Holiday"

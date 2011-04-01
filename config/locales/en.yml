@@ -3,6 +3,7 @@
 
 en:
   portal:
+    list: 'list'
     page_not_found: 'requested page does not exist'
     login: 'Sign in'
     register: 'Sign up'

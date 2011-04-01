@@ -8,7 +8,7 @@ class PublicHoliday::Italy < PublicHoliday
       PublicHoliday.new( :date => Date.civil( year,1,6 ), :code => :epiphany ),
       PublicHoliday.new( :date => self.easter( year), :code => :easter ),
       PublicHoliday.new( :date => self.easter( year ) + 1.day, :code => :easter_monday ),
-      PublicHoliday.new( :date => Date.civil( year,4,25 ), :code => :anniversary_of_iberation ),
+      PublicHoliday.new( :date => Date.civil( year,4,25 ), :code => :anniversary_of_liberation ),
       PublicHoliday.new( :date => Date.civil( year,5,1), :code => :labour_day ),
       PublicHoliday.new( :date => Date.civil( year,6,2 ), :code => :republic_day ),
       PublicHoliday.new( :date => Date.civil( year,8,15 ), :code => :ferrogasto ),
