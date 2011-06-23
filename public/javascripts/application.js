@@ -109,13 +109,13 @@ function isFree(d) {
   return (d.hasClass("weekend") || d.hasClass("holiday"))
 }
   
-function markDayAsPeriod(d, class) {
-  d.addClass("period "+class);
+function markDayAsPeriod(d, klass) {
+  d.addClass("period "+klass);
 }
   
-function unmarkDayAsPeriod(d, class, cond) {
+function unmarkDayAsPeriod(d, klass, cond) {
   if(cond) d.removeClass('period');
-  d.removeClass(class);
+  d.removeClass(klass);
 }
 
 function updateLeaveCounter() {

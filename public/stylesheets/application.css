@@ -152,6 +152,11 @@ table.calendar a.holiday {
   background-image: url('/images/day_holiday.png');
 }
 
+table.calendar a.today {
+  border-color: #000000;
+  border-width: 2px;
+}
+
 table.calendar a.period {
   background-color: yellow;
 }

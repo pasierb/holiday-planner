@@ -29,8 +29,15 @@ module PlannerHelper
 
   def calendar_day_cell( date, public_holidays )
     desc = is_holiday?( date, public_holidays ) ? t( get_holiday( date, public_holidays ).code ) : ""
-    td_class = [ "day", week_day_class(date), is_holiday?( date, public_holidays ) ? "holiday" : nil, clickable_day_class( date, public_holidays ) ].compact.join(' ')
-    content_tag :td, content_tag( :a, date.day, :class => td_class, :id => date, :title => desc, :href => "#" )
+    a_class = [ 
+      "day", 
+      week_day_class(date), 
+      is_holiday?( date, public_holidays ) ? "holiday" : nil, 
+      clickable_day_class( date, public_holidays ),
+      date.today? ? 'today' : nil 
+    ].compact.join(' ')
+    link = content_tag( :a, date.day, :class => a_class, :id => date, :title => desc, :href => "#" )
+    content_tag :td, link
   end
 
 end

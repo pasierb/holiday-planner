@@ -1,29 +1,4 @@
 pl:
-  portal:
-    list: 'lista'
-    page_not_found: 'taka strona nie istnieje'
-    login: 'Zalguj'
-    register: 'Załóż konto'
-    hi: 'Cześć'
-    not_you: 'Nie Ty?'
-    you_have_planned: 'Zaplanowałeś/aś'
-    days_of_leave: 'dni urlopu'
-    got: 'masz'
-    days_of: 'dni wolnego'
-    location: 'lokalizacja'
-    menu:
-      about: 'Co to?!'
-      news: 'Aktualności'
-      contact: 'Kontakt'
-    localizations:
-      full:
-        pl: "Polska"
-        en: "Anglia/Walia"
-        ir: "Irlandia"
-        it: "Włochy"
-
-# Polish translations for Ruby on Rails
-# by Jacek Becela (jacek.becela@gmail.com, http://github.com/ncr)
   number:
     format:
       separator: ","
@@ -56,20 +31,16 @@ pl:
           mb: "MB"
           gb: "GB"
           tb: "TB"
-
   date:
     formats:
       default: "%Y-%m-%d"
       short: "%d %b"
       long: "%d %B %Y"
-
     day_names: [Niedziela, Poniedziałek, Wtorek, Środa, Czwartek, Piątek, Sobota]
     abbr_day_names: [nd, pon, wt, śr, czw, pt, sob]
-
     month_names: [~, Styczeń, Luty, Marzec, Kwiecień, Maj, Czerwiec, Lipiec, Sierpień, Wrzesień, Październik, Listopad, Grudzień]
     abbr_month_names: [~, sty, lut, mar, kwi, maj, cze, lip, sie, wrz, paź, lis, gru]
     order: [ :year, :month, :day ]
-
   time:
     formats:
       default: "%a, %d %b %Y, %H:%M:%S %z"
@@ -77,7 +48,6 @@ pl:
       long: "%d %B %Y, %H:%M"
     am: "przed południem"
     pm: "po południu"
-
   datetime:
     distance_in_words:
       half_a_minute: "pół minuty"
@@ -128,7 +98,6 @@ pl:
       day:    "dzień"
       month:  "miesiąc"
       year:   "rok"
-
   activemodel:
     errors:
       template:
@@ -136,7 +105,6 @@ pl:
           one:    "%{model} nie został zachowany z powodu jednego błędu"
           other:  "%{model} nie został zachowany z powodu %{count} błędów"
         body: "Błędy dotyczą następujących pól:"
-
   activerecord:
     errors:
       template:
@@ -181,3 +149,26 @@ pl:
     select:
       prompt: "Proszę wybrać:"
 
+  portal:
+    list: 'lista'
+    page_not_found: 'taka strona nie istnieje'
+    login: 'Zalguj'
+    register: 'Załóż konto'
+    hi: 'Cześć'
+    not_you: 'Nie Ty?'
+    you_have_planned: 'Zaplanowałeś/aś'
+    days_of_leave: 'dni urlopu'
+    got: 'masz'
+    days_of: 'dni wolnego'
+    location: 'lokalizacja'
+    menu:
+      about: 'Co to?!'
+      news: 'Aktualności'
+      contact: 'Kontakt'
+      api: 'API'
+    localizations:
+      full:
+        pl: "Polska"
+        en: "Anglia/Walia"
+        ir: "Irlandia"
+        it: "Włochy"

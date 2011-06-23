@@ -1,0 +1,7 @@
+{
+  "info": { "localization": "<%= session[:localization] %>", "language": "<%= I18n.locale %>", "year": "<%= @year %>" },
+  "public_holidays": [ 
+  <% @public_holidays.each do |p| %> 
+    { "date": "<%= p.date %>", "name": "<%= t( p.code ) %>", "code": "<%= p.code %>" }<%= ',' unless p == @public_holidays.last %> 
+  <% end %> ]
+}

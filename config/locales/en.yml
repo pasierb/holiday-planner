@@ -18,6 +18,7 @@ en:
       about: "What's this?!"
       news: 'News'
       contact: 'Cantact'
+      api: 'API'
     localizations:
       full:
         pl: "Poland"

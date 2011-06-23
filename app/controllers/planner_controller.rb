@@ -6,6 +6,11 @@ class PlannerController < ApplicationController
   def show
     @year = get_year
     @public_holidays = get_public_holidays( @year )
+    respond_to do |format|
+      format.html
+      format.xml
+      format.json
+    end
   end
 
 protected
