@@ -1,4 +1,9 @@
 require 'rubygems'
+require 'yaml'
+
+unless ENV["RAILS_ENV"] == "production"
+  YAML::ENGINE.yamler= 'syck'
+end
 
 # Set up gems listed in the Gemfile.
 gemfile = File.expand_path('../../Gemfile', __FILE__)

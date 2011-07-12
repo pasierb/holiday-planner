@@ -1,0 +1,11 @@
+development:
+  app_id: '252703401413349'
+  app_secret: '55b08a8aebd9dc1c04ce18038e262a20'
+
+test:
+  app_id: '252703401413349'
+  app_secret: '55b08a8aebd9dc1c04ce18038e262a20'
+
+production:
+  app_id: '168151449883251'
+  app_secret: 'a9a8b54efa234474242c7a6bde6bd24a'

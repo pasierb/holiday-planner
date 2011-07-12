@@ -168,7 +168,8 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
-  config.oauth :facebook, '168151449883251', 'a9a8b54efa234474242c7a6bde6bd24a', 
+  fb_config = YAML.load_file(File.join(Rails.root, "config", "facebook.yml"))
+  config.oauth :facebook, fb_config[RAILS_ENV]['app_id'], fb_config[RAILS_ENV]['app_secret'], 
     :site => 'https://graph.facebook.com/',
     :authorize_path => '/oauth/authorize',
     :access_token_path => '/oauth/access_token',
@@ -183,14 +184,4 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
-end
-
-require 'faraday'
-module Faraday 
-  class Adapter < Middleware
-    def call(env)
-      env[:ssl][:verify] = false if env[:ssl]
-      process_body_for_request(env)
-    end
-  end
 end
