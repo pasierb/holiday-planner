@@ -184,3 +184,13 @@ Devise.setup do |config|
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
 end
+
+require 'faraday'
+module Faraday 
+  class Adapter < Middleware
+    def call(env)
+      env[:ssl][:verify] = false if env[:ssl]
+      process_body_for_request(env)
+    end
+  end
+end
