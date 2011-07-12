@@ -7,8 +7,9 @@ gem 'rails', '3.0.9'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-gem 'devise', :git => "http://github.com/plataformatec/devise.git", :branch => 'v1.2.oauth'  
-gem 'oauth2' 
+gem 'devise' 
+gem "oa-oauth", :require => "omniauth/oauth"
+gem 'oa-core'
 gem 'nifty-generators' #Just to create a basic layout
 gem 'automatic_foreign_key'
 gem 'chronic'

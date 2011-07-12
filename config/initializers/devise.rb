@@ -169,11 +169,10 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   fb_config = YAML.load_file(File.join(Rails.root, "config", "facebook.yml"))
-  config.oauth :facebook, fb_config[RAILS_ENV]['app_id'], fb_config[RAILS_ENV]['app_secret'], 
-    :site => 'https://graph.facebook.com/',
-    :authorize_path => '/oauth/authorize',
-    :access_token_path => '/oauth/access_token',
-    :scope => %w(email)
+  config.omniauth :facebook, fb_config[RAILS_ENV]['app_id'], fb_config[RAILS_ENV]['app_secret'], {
+    :scope => 'email, offline_access', 
+    :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}
+  } 
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

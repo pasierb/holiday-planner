@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :oauthable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   #
   # Associations --------------------------------------
@@ -20,10 +20,10 @@ class User < ActiveRecord::Base
 
   
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
-    data = ActiveSupport::JSON.decode(access_token.get('https://graph.facebook.com/me?'))
+    data = access_token['extra']['user_hash']
     if user = User.find_by_email(data["email"])
       user
-    else # Create an user with a stub password. 
+    else # Create a user with a stub password. 
       User.create!(:email => data["email"], :password => Devise.friendly_token[0,20]) 
     end
   end
@@ -39,5 +39,13 @@ class User < ActiveRecord::Base
     end 
     update_attributes(params) 
   end 
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["user_hash"]
+        user.email = data["email"]
+      end
+    end
+  end
 
 end

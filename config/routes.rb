@@ -2,7 +2,8 @@ HolidayplannerV3::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
   
-  devise_for :user
+  devise_for :user, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
