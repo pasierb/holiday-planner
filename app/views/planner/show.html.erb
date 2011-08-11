@@ -4,35 +4,41 @@
   <%= link_to image_tag('/images/next.gif'), planner_path( params[:localization], @year + 1 ) %>
 <% end %>
 
-<ul class="tabs">
+<% cache "#{I18n.locale}/#{@localization}/#{@year}", :expires_in => 5.hours do %>
+
+  <ul class="tabs">
     <li><a href="#tab1">Planner</a></li>
     <li><a href="#tab2"><%= t('portal.list').capitalize %></a></li>
-</ul>
+  </ul>
 
-<div class="tab_container">
-  <section id="tab1" class="tab_content">
-    <div class="info-bar">
-      <span class="counts-wrapper">
-        <%=t 'portal.you_have_planned' %> <span id="leave-count" class="count">0</span> 
-        <%=t 'portal.days_of_leave' %> - <%=t 'portal.got' %>
-        <span id="period-count" class="count">0</span> <%=t 'portal.days_of' %>!
-      </span>
-      <span id="save-info"></span>
-    </div>
-    <section class="calendar-wrapper">
-      <table class="calendar" cellspacing="0" cellpadding="0">
-        <tbody>
-          <% (1..12).each do |month| %>
-            <%= render :partial => "calendar_month", :locals => { :month => month, :public_holidays => @public_holidays } %>
-          <% end %>
-        </tbody>
-      </table>
+  <div class="tab_container">
+    <section id="tab1" class="tab_content">
+      <div class="info-bar">
+        <span class="counts-wrapper">
+          <%=t 'portal.you_have_planned' %> <span id="leave-count" class="count">0</span> 
+          <%=t 'portal.days_of_leave' %> - <%=t 'portal.got' %>
+          <span id="period-count" class="count">0</span> <%=t 'portal.days_of' %>!
+        </span>
+        <span id="save-info"></span>
+      </div>
+    
+      <section class="calendar-wrapper">
+        <table class="calendar" cellspacing="0" cellpadding="0">
+          <tbody>
+            <% (1..12).each do |month| %>
+              <%= render :partial => "calendar_month", :locals => { :month => month, :public_holidays => @public_holidays } %>
+            <% end %>
+          </tbody>
+        </table>
+      </section>
     </section>
-  </section>
-  <section id="tab2" class="tab_content">
-    <%= render :partial => "list", :locals => { :public_holidays => @public_holidays } %>
-  </section>
-</div>
+    
+    <section id="tab2" class="tab_content">
+      <%= render :partial => "list", :locals => { :public_holidays => @public_holidays } %>
+    </section>
+  </div>
+
+<% end %>
 
 <% javascript_tag do %>
   

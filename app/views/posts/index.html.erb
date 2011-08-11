@@ -12,7 +12,9 @@
   </header>
   
   <section class="posts">
-    <%= render :partial => "post_list", :collection => @posts, :as => :post %>
+    <% cache "#{I18n.locale}/post_list", :expires_in => 6.hours do %>
+      <%= render :partial => "post_list", :collection => @posts, :as => :post %>
+    <% end %>
   </section>
 
 </section>

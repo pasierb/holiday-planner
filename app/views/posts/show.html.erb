@@ -4,15 +4,17 @@
 
 <article class="page">
   
-  <header class="page-title">
-    <hgroup>
-      <h3><%=l @post.created_at, :format => :long %></h3>
-      <h1><%=h @post.title %></h1>
-    </hgroup>
-  </header>
+  <% cache "#{I18n.locale}/posts/#{@post.id}", :expires_in => 6.hours do %>  
+    <header class="page-title">
+      <hgroup>
+        <h3><%=l @post.created_at, :format => :long %></h3>
+        <h1><%=h @post.title %></h1>
+      </hgroup>
+    </header>
 
-  <section class="page-content">
-    <%=raw @post.content %>
-  </section>
+    <section class="page-content">
+      <%=raw @post.content %>
+    </section>
+  <% end %>
 
 </article>

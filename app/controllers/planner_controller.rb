@@ -1,10 +1,12 @@
 class PlannerController < ApplicationController
+
+  before_filter :get_year
+  before_filter :get_localization
   
   #
   # Main planner action, shows calendar planner
   #
   def show
-    @year = get_year
     @public_holidays = get_public_holidays( @year )
     respond_to do |format|
       format.html
@@ -19,14 +21,18 @@ protected
   # returns year sent in request or current year
   #
   def get_year
-    params[:year] ? params[:year].to_i : Time.now.year
+    @year ||= params[:year] ? params[:year].to_i : Time.now.year
+  end
+
+  def get_localization
+    @localization ||= set_localization
   end
 
   #
   # returns public holidays depending on current locale
   #
   def get_public_holidays( year )
-    PublicHoliday.factory( set_localization ).all( year )  
+    PublicHoliday.factory( @localization ).all( year )  
   end
 
 end
