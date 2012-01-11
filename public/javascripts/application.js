@@ -29,6 +29,24 @@ $(document).ready( function(){
     $("#wysuwany_div").stop();
     $("#wysuwany_div").animate({ right: "-209" }, 350 );
   });
+
+  //Tabs
+  //When page loads...
+  $(".tab_content").hide(); //Hide all content
+  $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+  $(".tab_content:first").show(); //Show first tab content
+
+  //On Click Event
+  $("ul.tabs li").click(function() {
+
+    $("ul.tabs li").removeClass("active"); //Remove any "active" class
+    $(this).addClass("active"); //Add "active" class to selected tab
+    $(".tab_content").hide(); //Hide all tab content
+
+    var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+    $(activeTab).fadeIn(); //Fade in the active ID content
+    return false;
+  });
   
 } );
 
@@ -38,49 +56,50 @@ function markDay(d) {
   }else {
     if( saveDay(d) ) markUpDay(d);
   }
+  storeMarkedDays( new Date(d.attr('id')).getFullYear() );
 }
   
 
-  function markUpDay(d) {
-    d.addClass('leave');
+function markUpDay(d) {
+  if( !d.hasClass('leave') ){ 
+    d.addClass('leave'); 
     markPeriod(d);
-    updateLeaveCounter();
   }
+  updateLeaveCounter();
+}
 
+function markDownDay(d) {
+  d.removeClass('leave');
+  unmarkPeriod(d);
+  updateLeaveCounter();
+}
 
-  function markDownDay(d) {
-    d.removeClass('leave');
-    unmarkPeriod(d);
-    updateLeaveCounter();
-  }
+function markPeriod(d) {
+  nxt = d;
+  do {
+    markDayAsPeriod(nxt,'fwd-period');
+    nxt = nextDay(nxt);
+  } while( isFree(nxt) )  
+  prev = d;
+  do {
+    markDayAsPeriod(prev,'rvs-period')
+    prev = prevDay(prev)
+  } while( isFree(prev) )
+}
 
-  function markPeriod(d) {
-    nxt = d;
-    do {
-      markDayAsPeriod(nxt,'fwd-period');
-      nxt = nextDay(nxt);
-    } while( isFree(nxt) )  
-
-    prev = d;
-    do {
-      markDayAsPeriod(prev,'rvs-period')
-      prev = prevDay(prev)
-    } while( isFree(prev) )
-  }
-
-  function unmarkPeriod(d) {
-    nxt = d;
-    do {
-      unmarkDayAsPeriod( nxt, 'fwd-period', !nxt.hasClass('rvs-period') );
-      nxt = nextDay(nxt);
-    } while( isFree(nxt) )  
-    
-    prev = d;
-    do {
-      unmarkDayAsPeriod( prev,'rvs-period', !prev.hasClass('fwd-period') );
-      prev = prevDay(prev);
-    } while( isFree(prev) )
-  }
+function unmarkPeriod(d) {
+  nxt = d;
+  do {
+    unmarkDayAsPeriod( nxt, 'fwd-period', !nxt.hasClass('rvs-period') );
+    nxt = nextDay(nxt);
+  } while( isFree(nxt) )  
+  
+  prev = d;
+  do {
+    unmarkDayAsPeriod( prev,'rvs-period', !prev.hasClass('fwd-period') );
+    prev = prevDay(prev);
+  } while( isFree(prev) )
+}
 
 function nextDay(d) {
   try {
@@ -141,4 +160,23 @@ function showIntMenu( menu ) {
 function hideIntMenu( menu ) {
   $("#"+menu).removeClass('current-int-menu');
   $("div#"+menu+"-choose").hide();
+}
+
+function getMarkedDaysIds(){
+  return $.map( $('.leave'), function(d,i){ return $(d).attr('id') } );
+}
+
+function storeMarkedDays( year ){
+  $.jStorage.set( "holidayplanner_"+year, getMarkedDaysIds() );
+}
+
+function getStoredDaysIds( year ){
+  return $.jStorage.get( "holidayplanner_"+year );
+}
+
+function markStoredDays( year ){
+  leave = getStoredDaysIds( year );
+  if( leave ){
+    $.each( leave, function(k,d){ markUpDay( $( '#'+d ) ) } );
+  }
 }
