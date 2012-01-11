@@ -150,7 +150,7 @@ pl:
       prompt: "Proszę wybrać:"
 
   portal:
-    list: 'lista'
+    list: 'lista dni wolnych'
     page_not_found: 'taka strona nie istnieje'
     login: 'Zalguj'
     register: 'Załóż konto'

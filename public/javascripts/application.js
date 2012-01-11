@@ -4,6 +4,7 @@ $(document).ready( function(){
   
   // register onClick hook
   //
+  $(".day").click( function(){ return false; } );
   $(".clickable").click( function(){ 
     markDay( $(this) ) 
     return false;
@@ -15,6 +16,7 @@ $(document).ready( function(){
   $('.holiday').each( function(i){
     $(this).CreateBubblePopup({ 
       innerHtml: $(this).attr('title'),
+      selectable: true,
       themeName: 'all-black',
       themePath: '/images/jquerybubblepopup-theme'
     });
@@ -124,8 +126,17 @@ function prevDay(d) {
 }
 
 function isFree(d) {
+  return ( isWeekend(d) || isHoliday(d) )
+}
+
+function isWeekend(d){
   if( d == null ) return false;
-  return (d.hasClass("weekend") || d.hasClass("holiday"))
+  return d.hasClass("weekend")
+}
+
+function isHoliday(d){
+  if( d == null ) return false;
+  return d.hasClass("holiday")
 }
   
 function markDayAsPeriod(d, klass) {

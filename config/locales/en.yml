@@ -3,7 +3,7 @@
 
 en:
   portal:
-    list: 'list'
+    list: 'free days'
     page_not_found: 'requested page does not exist'
     login: 'Sign in'
     register: 'Sign up'
