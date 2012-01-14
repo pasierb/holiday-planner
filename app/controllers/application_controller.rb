@@ -35,4 +35,8 @@ protected
     session[:localization] || cookies[:localization]
   end
 
+  def get_localization
+    @localization ||= set_localization
+  end
+
 end

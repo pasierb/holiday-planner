@@ -150,7 +150,12 @@ pl:
       prompt: "Proszę wybrać:"
 
   portal:
-    list: 'lista dni wolnych'
+    real_leave_span: "Okres urlopu"
+    real_leave_count: "Ilość dni wolnych"
+    leave_count: "Urlop"
+    tabs:
+      list: 'lista dni wolnych'
+      leave_request: "wydrukuj wniosek urlopowy"
     page_not_found: 'taka strona nie istnieje'
     login: 'Zalguj'
     register: 'Załóż konto'

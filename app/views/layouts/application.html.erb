@@ -6,12 +6,14 @@
   </title>
   <%= stylesheet_link_tag 'reset', 'application', 'jquery.bubblepopup.v2.3.1' %>
   <%= formtastic_stylesheet_link_tag %>
-  <%= javascript_include_tag 'jquery', 'jquery.json-2.3.min', 'jquery-ui', 'jstorage.min.js', 'jquery.bubblepopup.v2.3.1.min.js', 'application' %>  
+  <%= javascript_include_tag 'jquery', 'jquery.json-2.3.min', 'jshashtable-2.1', 'jquery-ui', 'jstorage.min.js', 'jquery.bubblepopup.v2.3.1.min.js', 'application', 'app/app.day', 'app/app.leave_period' %>  
   <%= csrf_meta_tag %>
   <meta name="robots" content="index, follow" />
   <meta name="keywords" content="wakacje, holidays, święta, wielkanoc, boże narodzenie, długi, weekend, planner, plan, vacation, urlop, wolne, wakacje, planowanie, planuj, dni, ustawowo, praca, polska, pl, wolne w roku, bank holidays, public holidays, leave, spring break, christmas, easter, italy, england, ireland, wales, great britain" />
   <meta name="title" content="Holiday Planner" />
   <meta name="description" content="Public holidays, Poland, England, Wales, Ireland, see the oportunity, plan holidays" />
+
+  <%= yield :head %>
 
   <!-- GA -->
   <script type="text/javascript">

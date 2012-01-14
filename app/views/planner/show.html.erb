@@ -8,7 +8,10 @@
 
   <ul class="tabs">
     <li><a href="#tab1">Planner</a></li>
-    <li><a href="#tab2"><%= t('portal.list').capitalize %></a></li>
+    <li><a href="#tab2"><%= t('portal.tabs.list').capitalize %></a></li>
+    <% if LEAVE_REQUEST_PDF_LOCALIZATIONS.include?( @localization.to_sym ) %>
+      <li><a href="#tab3" class="new"><%= t('portal.tabs.leave_request').capitalize %>!</a></li>
+    <% end %>
   </ul>
 
   <div class="tab_container">
@@ -35,6 +38,10 @@
     
     <section id="tab2" class="tab_content">
       <%= render :partial => "list", :locals => { :public_holidays => @public_holidays } %>
+    </section>
+
+    <section id="tab3" class="tab_content">
+      <%= render :partial => "leave_requests/index" %>
     </section>
   </div>
 

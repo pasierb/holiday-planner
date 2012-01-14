@@ -24,10 +24,6 @@ protected
     @year ||= params[:year] ? params[:year].to_i : Time.now.year
   end
 
-  def get_localization
-    @localization ||= set_localization
-  end
-
   #
   # returns public holidays depending on current locale
   #

@@ -1,6 +1,6 @@
 require File.expand_path('../boot', __FILE__)
-
 require 'rails/all'
+require 'pdfkit'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -38,5 +38,10 @@ module HolidayplannerV3
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+
+    config.middleware.use PDFKit::Middleware, :print_media_type => true
   end
 end
+
+LEAVE_REQUEST_PDF_LOCALIZATIONS = [:pl]

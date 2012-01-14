@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    <%= content_for?( :title ) ? yield( :title ) : "HolidayPlannerApp.com" %>
+  </title>
+  <%= stylesheet_link_tag 'reset', 'pdf', :media => "all" %>
+</head>
+<body>
+  <%= yield %>
+</body>
+</html>

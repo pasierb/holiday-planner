@@ -6,7 +6,7 @@ $(document).ready( function(){
   //
   $(".day").click( function(){ return false; } );
   $(".clickable").click( function(){ 
-    markDay( $(this) ) 
+    new Day( $(this) ).mark();
     return false;
   });
 
@@ -52,101 +52,69 @@ $(document).ready( function(){
   
 } );
 
-function markDay(d) {
-  if( d.hasClass('leave') ) {
-    if( deleteDay(d) ) markDownDay(d);
-  }else {
-    if( saveDay(d) ) markUpDay(d);
-  }
-  storeMarkedDays( new Date(d.attr('id')).getFullYear() );
-}
+
+
+function markPeriod( d, join_periods ) {
+  var day = new Day( d );
+  var period_id = newPeriodId();
+
+  if( join_periods ) $.each( [day.next(), day.prev()], function(i,d){ if( d.getPeriodId() ){ period_id = d.getPeriodId(); } } );
   
-
-function markUpDay(d) {
-  if( !d.hasClass('leave') ){ 
-    d.addClass('leave'); 
-    markPeriod(d);
-  }
-  updateLeaveCounter();
-}
-
-function markDownDay(d) {
-  d.removeClass('leave');
-  unmarkPeriod(d);
-  updateLeaveCounter();
-}
-
-function markPeriod(d) {
-  nxt = d;
-  do {
-    markDayAsPeriod(nxt,'fwd-period');
-    nxt = nextDay(nxt);
-  } while( isFree(nxt) )  
-  prev = d;
-  do {
-    markDayAsPeriod(prev,'rvs-period')
-    prev = prevDay(prev)
-  } while( isFree(prev) )
+  day.markAsPeriod( period_id );
+  
+  var nxt = day.next();
+  var prev = day.prev();
+  while( nxt.isFree() || nxt.isPeriod() || nxt.isLeave() ) {
+    nxt.markAsPeriod( period_id );
+    nxt = nxt.next();
+  }  
+  while( prev.isFree() || prev.isPeriod() || prev.isLeave() ) {
+    prev.markAsPeriod( period_id );
+    prev = prev.prev();
+  } 
+  printPeriods();
 }
 
 function unmarkPeriod(d) {
-  nxt = d;
-  do {
-    unmarkDayAsPeriod( nxt, 'fwd-period', !nxt.hasClass('rvs-period') );
-    nxt = nextDay(nxt);
-  } while( isFree(nxt) )  
-  
-  prev = d;
-  do {
-    unmarkDayAsPeriod( prev,'rvs-period', !prev.hasClass('fwd-period') );
-    prev = prevDay(prev);
-  } while( isFree(prev) )
-}
+  var day = new Day( d );
+  var period_id = day.getPeriodId();
+  var new_periods_to_mark = new Array();
+  day.unmarkAsPeriod();
 
-function nextDay(d) {
-  try {
-    if( d.hasClass('last-day-of-month') ) {
-      nxt = d.parent().parent().next().next().find("td a.day").first();
-    } else { nxt = d.parent().next('td').children().first(); }
-    return nxt;
-  } catch(e) { return null; }
-}
-
-function prevDay(d) {
-  try {
-    if( d.hasClass('first-day-of-month') ) {
-      nxt = d.parent().parent().prev().prev().find("td a.day").last();
-    } else {
-      nxt = d.parent().prev('td').children().first();
+  var nxt = day.next();
+  var period_to_unmark = new Array();
+  while( nxt.isPeriod() ) {
+    if( nxt.isLeave() ){
+      new_periods_to_mark.push( nxt );
+      period_to_unmark = new Array();
+      break;
     }
-    return nxt;
-  } catch(e) {
-    return null;
+    period_to_unmark.push( nxt );
+    nxt = nxt.next();
+  } 
+  $.each( period_to_unmark, function(i,d){
+    d.unmarkAsPeriod();
+  } );
+  
+  var prev = day.prev();
+  period_to_unmark = new Array();
+  while( prev.isPeriod() ) {
+    if( prev.isLeave() ){
+      new_periods_to_mark.push( prev );
+      period_to_unmark = new Array();
+      break;
+    }
+    period_to_unmark.push( prev );
+    prev = prev.prev();
   }
-}
+  $.each( period_to_unmark, function(i,d){
+    d.unmarkAsPeriod();
+  } );
 
-function isFree(d) {
-  return ( isWeekend(d) || isHoliday(d) )
-}
+  $.each( new_periods_to_mark, function(i,d){ markPeriod( d.element, false ) });
+  printPeriods();
+} 
 
-function isWeekend(d){
-  if( d == null ) return false;
-  return d.hasClass("weekend")
-}
-
-function isHoliday(d){
-  if( d == null ) return false;
-  return d.hasClass("holiday")
-}
-  
-function markDayAsPeriod(d, klass) {
-  d.addClass("period "+klass);
-}
-  
-function unmarkDayAsPeriod(d, klass, cond) {
-  if(cond) d.removeClass('period');
-  d.removeClass(klass);
-}
 
 function updateLeaveCounter() {
   $("#leave-count").text( $(".leave").length );
@@ -173,21 +141,45 @@ function hideIntMenu( menu ) {
   $("div#"+menu+"-choose").hide();
 }
 
-function getMarkedDaysIds(){
-  return $.map( $('.leave'), function(d,i){ return $(d).attr('id') } );
-}
+function getMarkedDaysIds(){ return $.map( $('.leave'), function(d,i){ return $(d).attr('id') } ); }
 
 function storeMarkedDays( year ){
   $.jStorage.set( "holidayplanner_"+year, getMarkedDaysIds() );
 }
 
-function getStoredDaysIds( year ){
-  return $.jStorage.get( "holidayplanner_"+year );
-}
+function getStoredDaysIds( year ){ return $.jStorage.get( "holidayplanner_"+year ); }
 
 function markStoredDays( year ){
   leave = getStoredDaysIds( year );
   if( leave ){
-    $.each( leave, function(k,d){ markUpDay( $( '#'+d ) ) } );
+    $.each( leave, function(k,d){ new Day($( '#'+d )).markUp() } );
   }
+}
+
+function newPeriodId(){ return (new Date).getTime(); }
+
+function getPeriods(){
+  var periods = new Hashtable();
+  var period_days = $("a.day.period");
+  if( period_days ){
+    $.each( period_days, function(i,d){
+      var day = new Day( $(d) );
+      var period_id = day.getPeriodId();
+      if( periods.containsKey( period_id ) ){
+        p = periods.get( period_id );
+        p.days.push( day );
+        periods.put( period_id, p );
+      }else {
+        periods.put( period_id, new LeavePeriod( [day] ) );
+      }
+    });
+  }
+  return periods;
+}
+
+function printPeriods(){
+  $("#periords-list").html("");
+  getPeriods().each( function(k,period){
+    period.print();
+  });
 }

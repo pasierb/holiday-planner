@@ -1,4 +1,7 @@
 HolidayplannerV3::Application.routes.draw do
+  
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
   
@@ -12,6 +15,7 @@ HolidayplannerV3::Application.routes.draw do
   #match "/(:localization)" => "planner#show"
   scope "/(:localization)", :localization => /default|pl|en|ir|it/ do
     match "planner/(:year)" => "planner#show", :as => :planner
+    match "leave_request" => "leave_requests#show", :as => :leave_request
   end
 
   # Sample of named route:

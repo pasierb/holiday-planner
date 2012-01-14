@@ -16,6 +16,8 @@ gem 'chronic'
 gem 'inherited_resources', '1.1.2'
 gem 'inherited_resources_views'
 gem 'formtastic'
+gem 'pdfkit'
+gem 'wkhtmltopdf-binary'
 
 # Use unicorn as the web server
 # gem 'unicorn'

@@ -3,7 +3,9 @@
 
 en:
   portal:
-    list: 'free days'
+    tabs:
+      list: 'free days'
+      leave_request: 'print Your leave request'
     page_not_found: 'requested page does not exist'
     login: 'Sign in'
     register: 'Sign up'

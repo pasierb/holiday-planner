@@ -1,0 +1,44 @@
+<div>
+	<div class="dotted-box left">
+		&nbsp;
+		<%= dots %></br >
+		<div class="dotted-box-title">Imię i Nazwisko</div>
+	</div>
+
+	<div class="dotted-box right">
+		<%= Time.now.strftime("%d.%m.%Y") %>
+		<%= dots %></br >
+		<div class="dotted-box-title">data wystawienia</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+<br />
+<br />
+<br />
+<div>
+	<h1>WNIOSEK URLOPOWY</h1>
+</div>
+<br />
+<br />
+<div>
+	<p>
+ 		Proszę o udzielenie urlopu wypoczynkowego za rok <%= user_input @year %> 
+ 		<% if @total.try(:to_i) == 1 && @since && @to && @since == @to %>
+ 			w dniu <%= user_input @since %>.
+ 		<% else %>
+ 			w liczbie <%= user_input @total %> dni od dnia <%= user_input @since %> do dnia <%= user_input @to %>.
+ 		<% end %>
+	</p>
+</div>
+<div>
+	<div class="dotted-box right">
+		&nbsp;
+		<%= dots %></br >
+		<div class="dotted-box-title">podpis pracownika</div>
+	</div>
+</div>
+<div>
+	<br />
+	<br />
+	<p>Wyrażam zgodę na urlop we wskazanym terminie <%= dots(80) %></p>
+</div>

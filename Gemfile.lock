@@ -80,6 +80,7 @@ GEM
       faraday (~> 0.6.1)
       multi_json (>= 0.0.5)
     orm_adapter (0.0.5)
+    pdfkit (0.5.2)
     pg (0.11.0)
     polyglot (0.3.1)
     rack (1.2.3)
@@ -112,6 +113,7 @@ GEM
     tzinfo (0.3.29)
     warden (1.0.4)
       rack (>= 1.0)
+    wkhtmltopdf-binary (0.9.5.3)
 
 PLATFORMS
   ruby
@@ -126,6 +128,8 @@ DEPENDENCIES
   nifty-generators
   oa-core
   oa-oauth
+  pdfkit
   pg
   rails (= 3.0.9)
   rake (= 0.8.7)
+  wkhtmltopdf-binary

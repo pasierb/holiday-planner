@@ -433,6 +433,12 @@ ul.tabs li a {
 ul.tabs li a:hover {
   background: #ccc;
 }
+
+ul.tabs li a.new {
+  font-weight: bold;
+  color: red;
+}
+
 html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
   background: #fff;
   border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
@@ -484,6 +490,27 @@ td.holidays-list-month {
   background-color: #b6d18e;
   padding: 4px 0 0 4px;
 }
+
+table.periods tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+table.periods tbody tr:nth-child(odd) {
+}
+
+table.periods td {
+  border-spacing: 2px;
+  padding: 12px 22px;
+  margin: 1px;
+  text-align: center;
+}
+
+table.periods thead td {
+  font-weight: bold;
+  background: #B6D18E;
+  border-left: 5px solid #fff;
+}
+
 
 /* adtaily */
 .adtaily {
