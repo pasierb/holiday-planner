@@ -17,7 +17,7 @@ gem 'inherited_resources', '1.1.2'
 gem 'inherited_resources_views'
 gem 'formtastic'
 gem 'pdfkit'
-gem 'wkhtmltopdf-heroku', :git => "git://github.com/camdez/wkhtmltopdf-heroku.git"
+gem "pdfkit-heroku", "~> 0.1.2"
 
 # Use unicorn as the web server
 # gem 'unicorn'
