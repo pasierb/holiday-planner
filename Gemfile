@@ -18,6 +18,7 @@ gem 'inherited_resources_views'
 gem 'formtastic'
 gem 'pdfkit'
 gem "pdfkit-heroku", "~> 0.1.2"
+gem "heroku"
 
 # Use unicorn as the web server
 # gem 'unicorn'

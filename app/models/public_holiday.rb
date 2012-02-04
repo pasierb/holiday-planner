@@ -72,7 +72,7 @@ private
   # returns config file (/config/public_holidays.yml)
   #
   def self.config_file
-    File.new("#{RAILS_ROOT}/config/public_holidays.yml")
+    File.new("#{Rails.root.to_s}/config/public_holidays.yml")
   end
 
 end
