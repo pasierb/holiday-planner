@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110113230951) do
+ActiveRecord::Schema.define(:version => 20120205184336) do
+
+  create_table "activity_logs", :force => true do |t|
+    t.string   "ip_address"
+    t.text     "note"
+    t.string   "activity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "custom_pages", :force => true do |t|
     t.string   "permalink"

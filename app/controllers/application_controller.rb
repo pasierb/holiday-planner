@@ -19,7 +19,6 @@ protected
 
   def set_localization
     session[:localization] = cookies[:localization] = if params[:localization] != nil && params[:localization] != 'default'
-      puts 1
       params[:localization]
     elsif session[:localization] 
       session[:localization]
@@ -37,6 +36,10 @@ protected
 
   def get_localization
     @localization ||= set_localization
+  end
+
+  def activity_log( params )
+    ActivityLog.log( params.merge( :ip_address => request.ip ) )
   end
 
 end

@@ -1,0 +1,6 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  ip_address: "127.0.0.1"
+  note: MyText
+  activity: MyString

@@ -4,4 +4,4 @@ ActionController::Base.asset_host = Proc.new { |source, request|
   else
     "#{request.protocol}#{request.host_with_port}"
   end
-}
+} if Rails.env.production?
