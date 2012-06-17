@@ -4,9 +4,9 @@
   <title>
     <%= content_for?( :title ) ? yield( :title ) : "HolidayPlannerApp.com" %>
   </title>
-  <%= stylesheet_link_tag 'reset', 'application', 'jquery.bubblepopup.v2.3.1' %>
+  <%= stylesheet_link_tag 'reset', 'bootstrap.css', 'application', 'jquery.bubblepopup.v2.3.1', %>
   <%= formtastic_stylesheet_link_tag %>
-  <%= javascript_include_tag 'jquery', 'jquery.json-2.3.min', 'jshashtable-2.1', 'jquery-ui', 'jstorage.min.js', 'jquery.bubblepopup.v2.3.1.min.js', 'application', 'app/app.day', 'app/app.leave_period' %>  
+  <%= javascript_include_tag 'jquery', 'jquery.leanModal.min', 'jquery.json-2.3.min', 'jshashtable-2.1', 'jquery-ui', 'jstorage.min.js', 'jquery.bubblepopup.v2.3.1.min.js', 'application', 'app/app.day', 'app/app.leave_period' %>  
   <%= csrf_meta_tag %>
   <meta name="robots" content="index, follow" />
   <meta name="keywords" content="wakacje, holidays, święta, wielkanoc, boże narodzenie, długi, weekend, planner, plan, vacation, urlop, wolne, wakacje, planowanie, planuj, dni, ustawowo, praca, polska, pl, wolne w roku, bank holidays, public holidays, leave, spring break, christmas, easter, italy, england, ireland, wales, great britain" />
@@ -33,18 +33,6 @@
 
 </head>
 <body>
-
-  <div id="fb-root"></div>
-  <script src="http://connect.facebook.net/en_US/all.js"></script>
-  <script>
-    FB.init({
-      appId  : 168151449883251,
-      status : true, // check login status
-      cookie : true, // enable cookies to allow the server to access the session
-      xfbml  : true  // parse XFBML
-    });
-  </script>
-
 
 <div class="wrp">
   
@@ -101,8 +89,19 @@
   </div>
     <div id="wysuwany_div">
       <div id="ramka_facebooka">
-        <fb:fan profile_id="168151449883251" stream="0" connections="9" logobar="0" width="190" height="380"></fb:fan>
+        <!-- AddThis Button BEGIN -->
+        <div class="addthis_toolbox addthis_floating_style addthis_counter_style">
+          <a class="addthis_button_facebook_like" fb:like:layout="box_count"></a>
+          <a class="addthis_button_tweet" tw:count="vertical"></a>
+          <a class="addthis_button_google_plusone" g:plusone:size="tall"></a>
+          <a class="addthis_counter"></a>
+        </div>
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fdc66b3006aa3e1"></script>
+        <!-- AddThis Button END -->
       </div>
     </div>
+
+    
 </body>
 </html>

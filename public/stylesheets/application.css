@@ -34,11 +34,27 @@ section.content {
   -moz-border-radius: 15px;
   border-radius: 15px;
   padding: 20px;
+  margin-top: 90px;
 }
 
 section.top-wrapper {
+  top: 0;
   height: 90px;
-  position: relative;
+  position: fixed;
+  z-index: 9999;
+}
+
+section.top-wrapper.fixed {
+  background: #fff;
+  opacity: 0.9;
+  -moz-opacity: 0.9;
+  filter:alpha(opacity=9);
+  -webkit-border-bottom-right-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 header#top h1 a {
@@ -174,11 +190,19 @@ table.calendar td a {
 }
 
 div#account-info {
-  float: right;
+  position: absolute;
+  right: 0;
+  z-index: 1000;
   background-color: #000;
   color: #fff;
-  padding: 4px 8px 8px 8px;
+  padding: 15px 8px 8px 8px;
   font-size: 11px;
+  -webkit-border-bottom-right-radius: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -moz-border-radius-bottomright: 8px;
+  -moz-border-radius-bottomleft: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 div#account-info a {
@@ -206,8 +230,9 @@ div.logged-info {
 }
 
 div.internationalization-info {
-  border-top: 1px solid #555;
   padding-top: 2px;
+  margin: 8px;
+  font-size: 17px;
   text-align: right;
 }
 
@@ -225,11 +250,9 @@ span#locales, span#localizations {
 
 div#localizations-choose, div#locales-choose {
   display: none;
-  padding: 5px;
-  width: 100%;
-  background-color: #222;
-  float: right;
 }
+
+div#localizations-choose ul li { font-size: 1.1em; }
 
 div#localizations-choose ul, div#locales-choose ul {
   list-style: none;
@@ -270,16 +293,14 @@ footer a {
 }
 
 #wysuwany_div { 
-  width: 236px; 
-  height: 382px; 
-  background: url('/images/facebook_bg.jpg') no-repeat; 
+  width: 72px;
   position: fixed; 
-  top: 100px; 
-  right: -209px;
+  top: 90px; 
+  right: 0px;
 } 
 
 #ramka_facebooka { 
-  margin: 7px 0 0 40px;
+  /*margin: 7px 0 0 40px;*/
 }
 
 section.calendar-wrapper {
@@ -515,4 +536,41 @@ table.periods thead td {
 /* adtaily */
 .adtaily {
   margin: 0 0 10px 0;
+  z-index: 1;
 }
+
+#lean_overlay {
+  position: fixed;
+  z-index:100;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+  background: #000;
+  display: none;
+}
+
+.leanModal-container {
+  background: #fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 5px 5px 5px black;
+  -webkit-box-shadow: 5px 5px 5px black;
+  box-shadow: 5px 5px 5px black;
+  padding: 20px;
+  min-width: 350px;
+}
+
+a.modal_close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  display: block;
+  width: 29px;
+  height: 29px;
+  background: url(/images/close_button.png);
+  z-index: 2;
+}
+
+.leanModal-container form { color: black; }

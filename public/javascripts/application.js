@@ -22,15 +22,7 @@ $(document).ready( function(){
     });
   });
 
-  $("#wysuwany_div").mouseover(function() {
-    $("#wysuwany_div").stop();
-    $("#wysuwany_div").animate({ right: "0" },350 );
-  });
-        
-  $("#wysuwany_div").mouseout(function() {
-    $("#wysuwany_div").stop();
-    $("#wysuwany_div").animate({ right: "-209" }, 350 );
-  });
+  $("a[rel*=leanModal]").leanModal({ overlay : 0.4, closeButton: ".modal_close" });
 
   //Tabs
   //When page loads...
@@ -48,6 +40,17 @@ $(document).ready( function(){
     var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
     $(activeTab).fadeIn(); //Fade in the active ID content
     return false;
+  });
+
+  $(window).scroll(function(e){ 
+    $el = $('.top-wrapper'); 
+    if( $(this).scrollTop() > 100 ){
+      if( !$el.hasClass('fixed') ){
+        $el.addClass('fixed');
+      }
+    }else{
+      $el.removeClass('fixed');
+    }
   });
   
 } );
@@ -131,9 +134,10 @@ function toggleIntMenu( menu ) {
   }
 }
 
-function showIntMenu( menu ) {
-  $("#"+menu).addClass('current-int-menu');
-  $("div#"+menu+"-choose").show();
+function showIntMenu( element, menu ) {
+  //$("#"+menu).addClass('current-int-menu');
+  //$("div#"+menu+"-choose").slideDown('70');
+  $(element).colorbox({ inline: true, width: "50%", height: "50%" }) ;
 }
 
 function hideIntMenu( menu ) {
