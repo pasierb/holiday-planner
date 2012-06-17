@@ -27,6 +27,7 @@ en:
         en: "England/Wales"
         ir: "Northen Ireland"
         it: "Italy"
+        at: "Austria"
 
   number:
     # Used in number_with_delimiter()

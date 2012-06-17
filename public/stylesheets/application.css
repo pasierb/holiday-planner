@@ -45,6 +45,7 @@ section.top-wrapper {
 }
 
 section.top-wrapper.fixed {
+  height: 65px;
   background: #fff;
   opacity: 0.9;
   -moz-opacity: 0.9;
@@ -55,6 +56,7 @@ section.top-wrapper.fixed {
   -moz-border-radius-bottomleft: 10px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
+  margin-top: -25px;
 }
 
 header#top h1 a {
@@ -73,6 +75,8 @@ header#top h2#year-holder {
   font-size: 27px;
 }
 
+section.top-wrapper.fixed header#top h2#year-holder { top: 25px; }
+
 header#top h1 a {
   background: transparent url('/images/logo.png') no-repeat 0px 0px;
   width: 248px;
@@ -84,6 +88,8 @@ section.top-menu {
   left: 450px;
   top: 30px;
 }
+
+section.top-wrapper.fixed section.top-menu { top: 10px; }
 
 nav#menu {
   height: 35px;
@@ -234,6 +240,11 @@ div.internationalization-info {
   margin: 8px;
   font-size: 17px;
   text-align: right;
+}
+
+.top-wrapper.fixed div.internationalization-info {
+  padding-top: 9px;
+  margin-bottom: 3px;
 }
 
 span#localizations {

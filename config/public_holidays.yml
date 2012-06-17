@@ -9,3 +9,6 @@ ir:
 
 it:
   klass: 'PublicHoliday::Italy'
+
+at:
+  klass: 'PublicHoliday::Austria'
