@@ -1,87 +1,17 @@
 <% content_for :year_holder do %>
-  <%= link_to image_tag('/images/prev.gif'), planner_path( params[:localization], @year - 1 ) %>
-  <%=h @year %> 
-  <%= link_to image_tag('/images/next.gif'), planner_path( params[:localization], @year + 1 ) %>
+  <%= link_to image_tag('/images/prev.gif'), planner_path( params[:localization], @year - 1 ), :class => "x-year-change x-year-change-minus" %>
+  <span class="x-year"><%=h @year %></span>
+  <%= link_to image_tag('/images/next.gif'), planner_path( params[:localization], @year + 1 ), :class => "x-year-change x-year-change-plus" %>
 <% end %>
 
-<% cache "#{I18n.locale}/#{@localization}/#{@year}", :expires_in => 5.hours do %>
-
-  <ul class="tabs">
-    <li><a href="#tab1">Planner</a></li>
-    <li><a href="#tab2"><%= t('portal.tabs.list').capitalize %></a></li>
-    <% if LEAVE_REQUEST_PDF_LOCALIZATIONS.include?( @localization.to_sym ) %>
-      <li><a href="#tab3" class="new"><%= t('portal.tabs.leave_request').capitalize %>!</a></li>
-    <% end %>
-  </ul>
-
-  <div class="tab_container">
-    <section id="tab1" class="tab_content">
-      <div class="info-bar">
-        <span class="counts-wrapper">
-          <%=t 'portal.you_have_planned' %> <span id="leave-count" class="count">0</span> 
-          <%=t 'portal.days_of_leave' %> - <%=t 'portal.got' %>
-          <span id="period-count" class="count">0</span> <%=t 'portal.days_of' %>!
-        </span>
-        <span id="save-info"></span>
-      </div>
-    
-      <section class="calendar-wrapper">
-        <table class="calendar" cellspacing="0" cellpadding="0">
-          <tbody>
-            <% (1..12).each do |month| %>
-              <%= render :partial => "calendar_month", :locals => { :month => month, :public_holidays => @public_holidays } %>
-            <% end %>
-          </tbody>
-        </table>
-      </section>
-    </section>
-    
-    <section id="tab2" class="tab_content">
-      <%= render :partial => "list", :locals => { :public_holidays => @public_holidays } %>
-    </section>
-
-    <section id="tab3" class="tab_content">
-      <%= render :partial => "leave_requests/index" %>
-    </section>
-  </div>
-
-<% end %>
-
-<%= javascript_tag do %>
-  
-  function saveDay(d) {
-    <% if current_user %> 
-      $.ajax({
-        type: "POST",
-        url: "/users/<%= current_user.id %>/days.js",
-        data: "day[date]="+d.attr('id')+"&day[user_id]=<%= current_user.id %>",
-        success: function(msg){ eval(msg); }
-      });
-    <% else %>
-      return true;
-    <% end %>
-  }
-  
-  function deleteDay(d) {
-    <% if current_user %> 
-      $.ajax({
-        type: "DELETE",
-        url: "/users/<%= current_user.id %>/days/"+d.attr('id')+".js",
-        success: function(msg){ eval(msg); }
-      });
-    <% else %>
-      return true;
-    <% end %>
-  }
-  
-  
-  <% if current_user %>
-    <% current_user.days.each do |day| %>
-      markUpDay( $("#<%= day.date %>") );
-    <% end %>
-  <% else %>
-    markStoredDays( <%= @year %> );
+<ul class="tabs">
+  <li><a href="#tab1">Planner</a></li>
+  <li><a href="#tab2"><%= t('portal.tabs.list').capitalize %></a></li>
+  <% if LEAVE_REQUEST_PDF_LOCALIZATIONS.include?( @localization.to_sym ) %>
+    <li><a href="#tab3" class="new"><%= t('portal.tabs.leave_request').capitalize %>!</a></li>
   <% end %>
-  updateLeaveCounter();
-  
-<% end %>
+</ul>
+
+<div class="calendar-section section-swap-container">
+  <%= render :partial => "calendar", :locals => { :year => @year, :localization => @localization, :public_holidays => @public_holidays } %>
+</div>

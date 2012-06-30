@@ -489,6 +489,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 .tab_content {
   padding: 20px;
   font-size: 1.2em;
+  display: none;
 }
 
 .holidays-list-month-container {
@@ -585,3 +586,12 @@ a.modal_close {
 }
 
 .leanModal-container form { color: black; }
+
+.x-clear { clear: both; display: block; height: 1px; }
+
+.content-main { overflow: hidden; }
+.content-main.swap .calendar-section #tab1 { display: block !important; float: left; } 
+.content-main.swap .tab_content { display: none; }
+
+.calendar-section { float: left; width: 5000px; }
+.calendar-section .calendar-element { float: left; }

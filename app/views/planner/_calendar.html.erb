@@ -1,0 +1,34 @@
+<% cache "#{I18n.locale}/#{localization}/#{year}", :expires_in => 5.hours do %>
+  <div class="calendar-element">
+    <div class="tab_container">
+      <section id="tab1" class="tab_content">
+        <div class="info-bar">
+          <span class="counts-wrapper">
+            <%=t 'portal.you_have_planned' %> <span id="leave-count" class="count">0</span> 
+            <%=t 'portal.days_of_leave' %> - <%=t 'portal.got' %>
+            <span id="period-count" class="count">0</span> <%=t 'portal.days_of' %>!
+          </span>
+          <span id="save-info"></span>
+        </div>
+      
+        <section class="calendar-wrapper">
+          <table class="calendar" cellspacing="0" cellpadding="0">
+            <tbody>
+              <% (1..12).each do |month| %>
+                <%= render :partial => "calendar_month", :locals => { :month => month, :public_holidays => public_holidays } %>
+              <% end %>
+            </tbody>
+          </table>
+        </section>
+      </section>
+      
+      <section id="tab2" class="tab_content">
+        <%= render :partial => "list", :locals => { :public_holidays => public_holidays } %>
+      </section>
+  
+      <section id="tab3" class="tab_content">
+        <%= render :partial => "leave_requests/index" %>
+      </section>
+    </div>
+  </div>
+<% end %>

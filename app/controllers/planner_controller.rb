@@ -8,10 +8,14 @@ class PlannerController < ApplicationController
   #
   def show
     @public_holidays = get_public_holidays( @year )
-    respond_to do |format|
-      format.html
-      format.xml
-      format.json
+    if request.xhr?
+      render :partial => "calendar", :locals => { :year => @year, :localization => @localization, :public_holidays => @public_holidays }
+    else
+      respond_to do |format|
+        format.html
+        format.xml
+        format.json
+      end
     end
   end
 

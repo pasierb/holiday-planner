@@ -1,7 +1,73 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 $(document).ready( function(){
+
+  $('a.x-year-change-plus').click(function(){
+    changeYear( getYear() + 1 );
+    return false;
+  });
+
+  $('a.x-year-change-minus').click(function(){
+    changeYear( getYear() - 1 );
+    return false;
+  });
+
+  $("a[rel*=leanModal]").leanModal({ overlay : 0.4, closeButton: ".modal_close" });
+
+  $(window).scroll(function(e){ 
+    $el = $('.top-wrapper'); 
+    if( $(this).scrollTop() > 50 ){
+      if( !$el.hasClass('fixed') ){ $el.addClass('fixed'); }
+    }else{ $el.removeClass('fixed'); }
+  });
+
+  initTabs();
+  initCalendar( getYear() );
+} );
+
+function changeYear( year ){ 
+  $.get('/planner/'+year, function(data) {
+    swapCalendar(data, (year > getYear()) );
+    initCalendar(year);
+    setYear(year);
+  });
+  return false;
+}
+
+function swapCalendar( calendar, append ){
+  var animation_duration = 500;
+  $(".content-main > .calendar-section .calendar-element").addClass("section-swap"); 
+  if( append ){
+    $(".content-main > .calendar-section").append(calendar);
+    activateCurrentTab();
+    $('.section-swap').stop().animate({width:"0px"},animation_duration,function(){
+      $(this).remove();
+      updateLeaveCounter();
+    });
+  }else{
+    var calendar = $(calendar);
+    calendar.css('width','0px');
+    $(".content-main > .calendar-section").prepend(calendar);
+    activateCurrentTab();
+    calendar.stop().animate({width:"1008px"},animation_duration,function(){
+      $('.section-swap').remove();
+      updateLeaveCounter();
+    });
+  }
   
+   
+}
+
+function activateCurrentTab(){
+  var active_tab_id = $("ul.tabs li.active a").attr('href');
+  $(active_tab_id+".tab_content", ".content-main > .calendar-section .calendar-element:not(.section-swap)").show();
+}
+
+function getYear(){ return parseInt( $(".x-year").html() ); }
+
+function setYear( year ){ $(".x-year").html(year); }
+
+function initCalendar( year ){
   // register onClick hook
   //
   $(".day").click( function(){ return false; } );
@@ -22,12 +88,14 @@ $(document).ready( function(){
     });
   });
 
-  $("a[rel*=leanModal]").leanModal({ overlay : 0.4, closeButton: ".modal_close" });
+  markStoredDays( year );  
+  updateLeaveCounter();
+}
 
-  //Tabs
+function initTabs(){
   //When page loads...
-  $(".tab_content").hide(); //Hide all content
-  $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+  //$(".tab_content").hide(); //Hide all content
+  $("ul.tabs li:first").addClass("active"); //.show(); //Activate first tab
   $(".tab_content:first").show(); //Show first tab content
 
   //On Click Event
@@ -41,21 +109,11 @@ $(document).ready( function(){
     $(activeTab).fadeIn(); //Fade in the active ID content
     return false;
   });
+}
 
-  $(window).scroll(function(e){ 
-    $el = $('.top-wrapper'); 
-    if( $(this).scrollTop() > 100 ){
-      if( !$el.hasClass('fixed') ){
-        $el.addClass('fixed');
-      }
-    }else{
-      $el.removeClass('fixed');
-    }
-  });
+function saveDay(d) { return true; }
   
-} );
-
-
+function deleteDay(d) { return true; }
 
 function markPeriod( d, join_periods ) {
   var day = new Day( d );
@@ -122,27 +180,6 @@ function unmarkPeriod(d) {
 function updateLeaveCounter() {
   $("#leave-count").text( $(".leave").length );
   $("#period-count").text( $(".period").length );
-}
-
-function toggleIntMenu( menu ) {
-  if( $("div#"+menu+"-choose").css('display') != 'block' ){
-    $(".int-menu").hide();
-    $(".int-menu-link").removeClass('current-int-menu');
-    showIntMenu( menu );
-  }else {
-    hideIntMenu( menu );
-  }
-}
-
-function showIntMenu( element, menu ) {
-  //$("#"+menu).addClass('current-int-menu');
-  //$("div#"+menu+"-choose").slideDown('70');
-  $(element).colorbox({ inline: true, width: "50%", height: "50%" }) ;
-}
-
-function hideIntMenu( menu ) {
-  $("#"+menu).removeClass('current-int-menu');
-  $("div#"+menu+"-choose").hide();
 }
 
 function getMarkedDaysIds(){ return $.map( $('.leave'), function(d,i){ return $(d).attr('id') } ); }
