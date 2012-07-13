@@ -43,6 +43,7 @@ function swapCalendar( calendar, append ){
     $('.section-swap').stop().animate({width:"0px"},animation_duration,function(){
       $(this).remove();
       updateLeaveCounter();
+      printPeriods();
     });
   }else{
     var calendar = $(calendar);
@@ -52,6 +53,7 @@ function swapCalendar( calendar, append ){
     calendar.stop().animate({width:"1008px"},animation_duration,function(){
       $('.section-swap').remove();
       updateLeaveCounter();
+      printPeriods();
     });
   }
   
